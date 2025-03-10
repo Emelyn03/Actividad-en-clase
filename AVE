@@ -1,0 +1,88 @@
+using System;
+using System.Collections.Generic;
+
+abstract class Ave
+{
+    public string Nombre { get; set; }
+    public bool PoneHuevo { get; set; }
+
+    public Ave(string nombre, bool poneHuevo)
+    {
+        Nombre = nombre;
+        PoneHuevo = poneHuevo;
+    }
+
+    public abstract void Volar();
+    public abstract void EmitirSonido();
+
+    public void Presentarse()
+    {
+        Console.WriteLine("Soy " + Nombre + " y " + (PoneHuevo ? "pongo huevos." : "no pongo huevos."));
+    }
+}
+
+class Aguila : Ave
+{
+    public Aguila(string nombre) : base(nombre, true) { }
+
+    public override void Volar()
+    {
+        Console.WriteLine("Soy " + Nombre + " y vuelo a grandes alturas.");
+    }
+
+    public override void EmitirSonido()
+    {
+        Console.WriteLine(Nombre + " emite un sonido fuerte y agudo.");
+    }
+}
+
+class Loro : Ave
+{
+    public Loro(string nombre) : base(nombre, true) { }
+
+    public override void Volar()
+    {
+        Console.WriteLine("Soy " + Nombre + " y vuelo de árbol en árbol.");
+    }
+
+    public override void EmitirSonido()
+    {
+        Console.WriteLine(Nombre + " puede imitar sonidos humanos.");
+    }
+}
+
+class Pinguino : Ave
+{
+    public Pinguino(string nombre) : base(nombre, true) { }
+
+    public override void Volar()
+    {
+        Console.WriteLine("Soy " + Nombre + " y no puedo volar, pero nado muy bien.");
+    }
+
+    public override void EmitirSonido()
+    {
+        Console.WriteLine(Nombre + " emite un graznido particular.");
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        List<Ave> aves = new List<Ave>
+        {
+            new Aguila("Águila Real"),
+            new Loro("Loro Verde"),
+            new Pinguino("Pingüino Emperador")
+        };
+
+        foreach (var ave in aves)
+        {
+            ave.Presentarse();
+            ave.Volar();
+            ave.EmitirSonido();
+            Console.WriteLine();
+        }
+    }
+}
